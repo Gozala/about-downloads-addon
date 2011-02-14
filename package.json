@@ -1,0 +1,27 @@
+{ "name": "about-downloads"
+, "id": "jid0-SRY5b2O8vEXaWGOX8IE6OFpWiHM"
+, "version": "0.0.1"
+, "description": "Download manager in the tab."
+, "homepage": "http://github.com/Gozala/about-downloads/"
+, "keywords": ["downloads", "tab"]
+, "contributors":
+  [ "Irakli Gozalishvili <rfobic@gmail.com> (http://jeditoolkit.com)" ]
+, "repository":
+  { "type": "git"
+  , "url": "git://github.com/Gozala/about-downloads.git"
+  }
+, "bugs": { "web": "http://github.com/Gozala/about-downloads/issues/" }
+, "directories":
+  { "doc": "./docs"
+  , "lib": "./lib"
+  , "test": "./test"
+  }
+, "dependencies": { "protocol": ">=0.1.0" }
+, "scripts": { "test": "node test/all.js" }
+, "engines": { "addon-sdk": ">=0.9.0" }
+, "licenses" :
+  [ { "type" : "MPL 1.1/LGPL 2.1/GPL 2.0"
+    , "url" : "http://www.mozilla.org/MPL/"
+    }
+  ]
+}
