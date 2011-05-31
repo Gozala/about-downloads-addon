@@ -1,10 +1,12 @@
 // vim:ts=2:sts=2:sw=2:
 
-'use strict'
+'use strict';
 
 const { Handler } = require("protocol");
 const { Panel } = require("panel");
 const { Widget } = require("widget");
+const { data } = require("self");
+const { setInterval, clearInterval } = require("timers");
 
 exports.handler = Handler({
   onRequest: function onRequest(request, response) {
@@ -12,11 +14,25 @@ exports.handler = Handler({
   }
 });
 
-exports.panel = Panel({ contentURL: "about:downloads" });
+exports.panel = Panel({
+  contentURL: "about:downloads"
+});
+
 exports.widget = Widget({
   id: "about-downloads-button",
   label: "Dowloads",
-  contentURL: "chrome://browser/skin/places/searching_16.png",
-  panel: exports.panel
+  contentURL: data.url("progressbar.html"),
+  contentScriptFile: [
+    data.url("raphael.js"),
+    data.url("widget-worker.js")
+  ],
+  panel: exports.panel,
+  onAttach: function onAttach(worker) {
+    let id = setInterval(function() {
+      worker.port.emit('change', Math.round(Math.random() * 100), 2)
+    }, 1000)
+    worker.on("detach", clearInterval.bind(null, id))
+  },
+  onDetach: console.log.bind(console, 'detach')
 });
 exports.handler.listen({ about: "downloads" })
