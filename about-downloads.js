@@ -15,8 +15,14 @@ exports.handler = Handler({
   }
 });
 
-exports.panel = Panel({
-  contentURL: "about:downloads"
+var panel = exports.panel = Panel({
+  contentURL: data.url("panel.html"),
+   contentScriptFile: [
+    data.url("underscore-min.js"),
+    data.url("backbone-min.js"),
+    data.url("models.js"),
+    data.url("views.js")
+  ]
 });
 
 var widget = exports.widget = Widget({
@@ -34,6 +40,7 @@ var widget = exports.widget = Widget({
 observer(function onChange(event) {
   //console.log(JSON.stringify(event, '', '  '));
   widget.port.emit('change', event);
+  panel.port.emit('change', event);
 });
 
 exports.handler.listen({ about: "downloads" })
