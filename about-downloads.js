@@ -7,7 +7,7 @@ const { Handler } = require("protocol");
 const { Panel } = require("panel");
 const { Widget } = require("widget");
 const { data } = require("self");
-const { setInterval, clearInterval } = require("timers");
+const observer = require("./downloads/observer").stream;
 
 exports.handler = Handler({
   onRequest: function onRequest(request, response) {
@@ -19,7 +19,7 @@ exports.panel = Panel({
   contentURL: "about:downloads"
 });
 
-exports.widget = Widget({
+var widget = exports.widget = Widget({
   id: "about-downloads-button",
   label: "Dowloads",
   contentURL: data.url("progressbar.html"),
@@ -27,13 +27,13 @@ exports.widget = Widget({
     data.url("raphael.js"),
     data.url("widget-worker.js")
   ],
-  panel: exports.panel,
-  onAttach: function onAttach(worker) {
-    let id = setInterval(function() {
-      worker.port.emit('change', Math.round(Math.random() * 100), 2)
-    }, 1000)
-    worker.on("detach", clearInterval.bind(null, id))
-  },
-  onDetach: console.log.bind(console, 'detach')
+  panel: exports.panel
 });
+
+
+observer(function onChange(event) {
+  //console.log(JSON.stringify(event, '', '  '));
+  widget.port.emit('change', event);
+});
+
 exports.handler.listen({ about: "downloads" })
