@@ -102,6 +102,7 @@ exports.stream = function stream(next, stop) {
   function onProgress(progress, request, value, maxP, total, maxT, download) {
     next({
       type: 'progress',
+      download: Download(download),
       downloads: getDownloads()
     })
   }
@@ -110,6 +111,7 @@ exports.stream = function stream(next, stop) {
     next({
       type: 'status',
       status: status,
+      downloads: getDownloads(),
       download: Download(download)
     })
   }
@@ -118,6 +120,7 @@ exports.stream = function stream(next, stop) {
     next({
       type: 'state',
       previousState: state,
+      downloads: getDownloads(),
       download: Download(download)
     })
   }

@@ -29,18 +29,16 @@ var progressTotalView = context.path();
 var progress = 0, total = 0, downloads = 0;
 
 updateStream(function onElement(value) {
-  if (value.type === "progress") {
-    progressView.animate({
-      arc: [
-        progress = value.downloads.reduce(function(value, download) {
-          return value + download.progress;
-        }, 0),
-        total = value.downloads.length * 100,
-        R
-      ]
-    }, 100, ">");
-    textView.attr({ text: downloads = value.downloads.length });
-  }
+  progressView.animate({
+    arc: [
+      progress = value.downloads.reduce(function(value, download) {
+        return value + download.progress;
+      }, 0),
+      total = value.downloads.length * 100,
+      R
+    ]
+  }, 100, ">");
+  textView.attr({ text: downloads = value.downloads.length });
 });
 
 window.addEventListener("resize", (function onResize() {
