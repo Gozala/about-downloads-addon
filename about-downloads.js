@@ -38,7 +38,6 @@ var widget = exports.widget = Widget({
 
 
 observer(function onChange(event) {
-  //console.log(JSON.stringify(event, '', '  '));
   widget.port.emit('change', event);
   panel.port.emit('change', event);
 });
