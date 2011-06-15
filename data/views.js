@@ -4,7 +4,7 @@ var View = Backbone.View.extend({
     if (attributes || (attributes = this.attributes)) {
       Object.keys(attributes).forEach(function onEach(name) {
         var value = attributes[name];
-        element.setAttribute(name === 'class' ? 'classname' : name, value);
+        element.setAttribute(name, value);
       });
     }
     element.innerHTML = content || this.content;
@@ -18,13 +18,26 @@ var DownloadView = View.extend({
     this.model.on('change', this.render.bind(this));
   },
   tagName: 'div',
-  content: '<div class="description"></div>' +
-           '<progress max="100" value="0"></progress>',
-  className: 'dowload',
+  content:  '<img class="icon"/>' +
+            '<div class="progress">' +
+              '<div class="description"></div>' +
+              '<progress max="100" value="0">'+
+                '<div class="value" width="0"></div>' +
+              '</progress>' +
+            '</div>' +
+            '<div class="controls"> ' +
+              '<button class="cancel"></button> ' +
+              '<button class="pause"></button> ' +
+            '</div>',
+  attributes: { 'class': 'download' },
   render: function render() {
     var data = this.model.toJSON();
-    this.el.querySelector("progress").setAttribute('value', data.progress);
-    this.el.querySelector(".description").textContent = data.description;
+    var icon = 'moz-icon:' + data.target + '?size=32';
+    this.el.querySelector('progress').setAttribute('value', data.progress);
+    this.el.querySelector('progress .value').width = data.progress + '%';
+    this.el.querySelector('.description').textContent = data.description;
+    this.el.querySelector('.icon').setAttribute('src', icon);
+    this.el.setAttribute('data-state', data.state);
     return this;
   }
 });
@@ -34,9 +47,7 @@ var AppView = View.extend({
     downloads.on("add", this.add.bind(this));
     downloads.on("remove", this.remove.bind(this));
     self.port.on("change", function(value) {
-      if (value.type === "progress") {
-        downloads.refresh(value.downloads);
-      }
+      downloads.refresh(value.downloads ? value.downloads : [ value.download ]);
     });
   },
   el: document.body,
