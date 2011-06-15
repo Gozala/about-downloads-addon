@@ -1,7 +1,7 @@
 {
   "name": "about-downloads",
   "id": "about-downloads",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Download manager in the tab.",
   "homepage": "http://github.com/Gozala/about-downloads/",
   "keywords": [ "downloads", "tab" ],

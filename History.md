@@ -1,5 +1,9 @@
 # History #
 
+  - Display paused downloads in the panel.
+  - Stop displaying 0 if there are no active downloads.
+  - Bug fix for windows.
+
 ## 0.2.2 / 2011-05-15
 
  - Improving fallback for version of FF that don't have html5 progress element.
