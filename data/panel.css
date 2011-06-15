@@ -20,9 +20,15 @@ body {
   -webkit-box-orient: horizontal;
 }
 
-/* show only active downloads */
-.download:not([data-state="0"]) {
+.download {
   display: none;
+}
+
+/* show only active and paused downloads */
+.download[data-state="0"],
+.download[data-state="4"] {
+  display: box;
+  display: -moz-box;
 }
 
 

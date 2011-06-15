@@ -47,8 +47,8 @@ var AppView = View.extend({
     downloads.on("add", this.add.bind(this));
     downloads.on("remove", this.remove.bind(this));
     self.port.on("change", function(value) {
-      downloads.refresh([ value.download ]);
       downloads.refresh(value.downloads);
+      downloads.refresh([ value.download ]);
     });
   },
   el: document.body,
