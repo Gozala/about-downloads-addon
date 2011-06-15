@@ -1,0 +1,80 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 80%;
+  width: 100%;
+}
+.download {
+  height: 34px;
+  box-flex : 1;
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  width: 100%;
+  display: box;
+  display : -moz-box;
+  display: -webkit-box;
+  box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-box-orient: horizontal;
+}
+
+/* show only active downloads */
+.download:not([data-state="0"]) {
+  display: none;
+}
+
+
+.progress {
+  box-flex : 1;
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  padding: 2px;
+  padding-right: 8px;
+}
+
+progress {
+  height: 10px;
+  width: 100%;
+  display: block;
+  -moz-box-pack: end;
+  -moz-appearance: progressbar;
+}
+progress > .value {
+  -moz-appearance: progresschunk;
+}
+
+.icon {
+  min-width: 32px;
+  min-height: 32px;
+  padding: 2px;
+}
+
+button {
+  color: inherit;
+  margin: 1px;
+  border: none;
+  background: rgba(100, 100, 100, 0.3);
+  border-radius: 100px;
+  box-flex : 1;
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+}
+
+.controls {
+  margin-left: 2px;
+  display: box;
+  display : -moz-box;
+  display: -webkit-box;
+  box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+}
+
+/**
+ * Disable unsupported features.
+ */
+.controls {
+  display: none;
+}
