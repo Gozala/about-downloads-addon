@@ -43,6 +43,8 @@ progress {
 }
 progress > .value {
   -moz-appearance: progresschunk;
+  height: inherit;
+  width: 0%;
 }
 
 .icon {

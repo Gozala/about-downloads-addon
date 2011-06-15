@@ -22,7 +22,7 @@ var DownloadView = View.extend({
             '<div class="progress">' +
               '<div class="description"></div>' +
               '<progress max="100" value="0">'+
-                '<div class="value" width="0"></div>' +
+                '<div class="value"></div>' +
               '</progress>' +
             '</div>' +
             '<div class="controls"> ' +
@@ -34,7 +34,7 @@ var DownloadView = View.extend({
     var data = this.model.toJSON();
     var icon = 'moz-icon:' + data.target + '?size=32';
     this.el.querySelector('progress').setAttribute('value', data.progress);
-    this.el.querySelector('progress .value').width = data.progress + '%';
+    this.el.querySelector('progress .value').style.width = data.progress + '%';
     this.el.querySelector('.description').textContent = data.description;
     this.el.querySelector('.icon').setAttribute('src', icon);
     this.el.setAttribute('data-state', data.state);
