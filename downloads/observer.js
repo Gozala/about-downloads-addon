@@ -95,7 +95,6 @@ exports.stream = function stream(next, stop) {
   function onSecurityChange(progress, request, state, download) {
     next({
       type: 'security',
-      active: dowloadManager.activeDownloadCount,
       download: Download(download)
     })
   }
@@ -111,7 +110,6 @@ exports.stream = function stream(next, stop) {
     next({
       type: 'status',
       status: status,
-      downloads: dowloadManager.activeDownloadCount,
       download: Download(download)
     })
   }
@@ -120,7 +118,6 @@ exports.stream = function stream(next, stop) {
     next({
       type: 'state',
       previousState: state,
-      downloads: dowloadManager.activeDownloadCount,
       download: Download(download)
     })
   }
