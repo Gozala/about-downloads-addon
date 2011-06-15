@@ -38,7 +38,7 @@ updateStream(function onElement(value) {
       R
     ]
   }, 100, ">");
-  textView.attr({ text: downloads = value.downloads.length });
+  textView.attr({ text: (downloads = value.downloads.length) || '' });
 });
 
 window.addEventListener("resize", (function onResize() {
@@ -46,7 +46,7 @@ window.addEventListener("resize", (function onResize() {
   R = Math.round(width * 40 / 100);
   context.setSize(width, height);
   textView.attr({
-    text: downloads,
+    text: downloads || '',
     "font-size": Math.round(140 * R / 100),
     color: "rgba(0, 0, 0, 0.7)",
     x: width / 2,
