@@ -27,7 +27,7 @@ var panel = exports.panel = Panel({
 
 var widget = exports.widget = Widget({
   id: "about-downloads-button",
-  label: "Dowloads",
+  label: "Downloads",
   contentURL: data.url("progressbar.html"),
   contentScriptFile: [
     data.url("raphael.js"),
